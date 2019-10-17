@@ -48,5 +48,26 @@ SDS的数据结构如图
 
 ---
 
-### 第三章 链表
+### 第3章 链表
+链表在redis中的应用非常广泛，redis的list数据结构的key的底层实现就是使用链表。
+除了list的key之外，发布与订阅、慢查询、监视器等功能也使用了链表。
+redis的list结构如图所示：
+![](https://hedgehog-img.pek3b.qingstor.com/list_structure.png)
+* dup函数用于赋值链表结点所保存的值
+* free函数用于释放列表结点所保存的值
+* match函数用于对比链表结点所保存的值与另一个输入值是否相等
 
+#### redis链表的特性如下
+1. 双端：链表结点带有prev和next指针
+2. 有head和tail指针
+3. 无环：head->pre为null，tail->next为null，对链表的访问以null结束。
+4. 有链表长度计数器len
+5. 多态：链表结点使用*value指针保存结点值，且可以通过list的dup、free、match属性为结点值设置特定函数，所以链表可以保存各种不同类型的值。
+
+#### 链表和链表结点的API
+💛pdf25,26
+
+
+### 第4章 字典
+字典其实就是我们熟悉的Map结构，由key-value构成。Redis的数据库底层就是使用Map实现的。如图是一个大小为4的空哈希表，sizemark值等于size-1，sizemark用于计算一个key被放在哪里。
+💛pdf28  4-1
